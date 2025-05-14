@@ -2,8 +2,11 @@ extends Node2D
 
 var state = "no apples" # no apples, apples
 var player_in_area = false
+var player = null
 
 var apple = preload("res://scene/apple_collectible.tscn")
+
+@export var item: InvItem
 
 func _ready() -> void:
 	if (state == "no apples"):
@@ -26,6 +29,7 @@ func _process(delta: float) -> void:
 func _on_pickable_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_area = true
+		player = body
 
 
 func _on_pickable_area_body_exited(body: Node2D) -> void:
@@ -42,6 +46,7 @@ func drop_apple():
 	apple_instance.global_position = $Marker2D.global_position
 	
 	get_parent().add_child(apple_instance)
+	player.collect(item)
 	
 	await get_tree().create_timer(3).timeout
 	$growth_timer.start()
