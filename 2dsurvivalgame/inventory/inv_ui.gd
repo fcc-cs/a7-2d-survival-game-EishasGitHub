@@ -6,7 +6,7 @@ extends Control
 var is_open = false
 
 func _ready() -> void:
-	inv.update.connect(update_slots())
+	inv.update.connect(update_slots)
 	update_slots()
 	close()
 

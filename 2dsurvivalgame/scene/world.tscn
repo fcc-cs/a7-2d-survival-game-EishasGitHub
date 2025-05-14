@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sxwk4ek0axyr"]
+[gd_scene load_steps=13 format=3 uid="uid://sxwk4ek0axyr"]
 
 [ext_resource type="PackedScene" uid="uid://bxtfeujjigul8" path="res://scene/player.tscn" id="1_pjass"]
 [ext_resource type="Texture2D" uid="uid://dndn3e81gmfk8" path="res://art/environment/survivalgame-terrian-defult.png" id="2_emkrx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bspbckgoe0o4h" path="res://art/environment/survivalgame-trees.png" id="4_hcb8y"]
 [ext_resource type="Texture2D" uid="uid://gtyl70u6ovp5" path="res://art/environment/survivalgame-terrian-water.png" id="5_y3jn2"]
 [ext_resource type="PackedScene" uid="uid://b2e30hvwfjka" path="res://scene/apple_tree.tscn" id="6_0tg4p"]
+[ext_resource type="PackedScene" uid="uid://mx1gyhelhbbn" path="res://scene/stick_collectible.tscn" id="6_hcb8y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yur6x"]
 texture = ExtResource("2_emkrx")
@@ -258,8 +259,6 @@ sources/3 = SubResource("TileSetAtlasSource_jsnws")
 
 [node name="world" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_pjass")]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_f345f")
 format = 2
@@ -277,3 +276,14 @@ position = Vector2(-63, 51)
 
 [node name="apple_tree2" parent="." instance=ExtResource("6_0tg4p")]
 position = Vector2(0, -36)
+
+[node name="stick_collectible" parent="." instance=ExtResource("6_hcb8y")]
+position = Vector2(69, 11)
+
+[node name="stick_collectible2" parent="." instance=ExtResource("6_hcb8y")]
+position = Vector2(-64, -24)
+
+[node name="stick_collectible3" parent="." instance=ExtResource("6_hcb8y")]
+position = Vector2(12, 88)
+
+[node name="player" parent="." instance=ExtResource("1_pjass")]
