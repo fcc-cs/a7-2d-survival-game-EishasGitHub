@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 100
 var player_state
-var bow_equipped = true
+var bow_equipped = false
 var bow_cooldown = true
 
 @export var inv: Inv
@@ -21,6 +21,13 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
+	if (Input.is_action_just_pressed("e")):
+		if (bow_equipped):
+			bow_equipped = false
+			
+		else:
+			bow_equipped = true
+	
 	var mouse_pos = get_global_mouse_position()
 	$Marker2D.look_at(mouse_pos)
 	
@@ -32,6 +39,9 @@ func _physics_process(delta: float) -> void:
 		arrow_instance.global_position = $Marker2D.global_position
 		
 		add_child(arrow_instance)
+		
+		await get_tree().create_timer(0.4).timeout
+		bow_cooldown = true
 	
 	play_anim(direction)
 	
