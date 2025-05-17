@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckk7dhi6l5pl2"]
+[gd_scene load_steps=18 format=3 uid="uid://ckk7dhi6l5pl2"]
 
 [ext_resource type="Texture2D" uid="uid://dndn3e81gmfk8" path="res://art/environment/survivalgame-terrian-defult.png" id="1_6hiw6"]
 [ext_resource type="Script" uid="uid://u82twurg8mag" path="res://script/world_2.gd" id="1_jedah"]
 [ext_resource type="Texture2D" uid="uid://pwr64sakifpx" path="res://art/environment/survivalgame-terrian-cliffs.png" id="2_jedah"]
 [ext_resource type="Texture2D" uid="uid://bspbckgoe0o4h" path="res://art/environment/survivalgame-trees.png" id="3_kggnj"]
 [ext_resource type="Texture2D" uid="uid://gtyl70u6ovp5" path="res://art/environment/survivalgame-terrian-water.png" id="4_baoun"]
+[ext_resource type="Texture2D" uid="uid://bhm3dw5671b78" path="res://art/SmokePartical.png" id="6_kggnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ew1y"]
 texture = ExtResource("1_6hiw6")
@@ -310,9 +311,18 @@ size = Vector2(62.5, 22)
 
 [sub_resource type="Curve2D" id="Curve2D_jedah"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -20, 290, 0, 0, 0, 0, -102, 361, 0, 0, 0, 0, -142, 428, 0, 0, 0, 0, -175, 501, 0, 0, 0, 0, -282, 501, 0, 0, 0, 0, -392, 515, 0, 0, 0, 0, -401, 644, 0, 0, 0, 0, -352, 729, 0, 0, 0, 0, -221, 729, 0, 0, 0, 0, 98, 732, 0, 0, 0, 0, 113, 649)
+"points": PackedVector2Array(0, 0, 0, 0, -20, 290, 0, 0, 0, 0, -135, 398, 0, 0, 0, 0, -175, 501, 0, 0, 0, 0, -282, 501, 0, 0, 0, 0, -315, 571, 0, 0, 0, 0, -307, 664, 0, 0, 0, 0, -221, 729, 0, 0, 0, 0, 98, 732, 0, 0, 0, 0, 113, 649)
 }
-point_count = 11
+point_count = 9
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kggnj"]
+particle_flag_rotate_y = true
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 50.0
+linear_accel_max = 100.0
 
 [node name="world2" type="Node2D"]
 script = ExtResource("1_jedah")
@@ -381,14 +391,50 @@ position = Vector2(-19.75, 289)
 shape = SubResource("RectangleShape2D_o4f17")
 
 [node name="Path2D" type="Path2D" parent="world2openingcutscene"]
+modulate = Color(1, 1, 1, 0)
 curve = SubResource("Curve2D_jedah")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="world2openingcutscene/Path2D"]
 position = Vector2(-20, 290)
-rotation = 2.42797
+rotation = 2.38757
 loop = false
 
 [node name="Camera2D" type="Camera2D" parent="world2openingcutscene/Path2D/PathFollow2D"]
 zoom = Vector2(6, 6)
+
+[node name="Smokeparticles1" type="GPUParticles2D" parent="world2openingcutscene"]
+position = Vector2(-346, 657)
+emitting = false
+amount = 800
+texture = ExtResource("6_kggnj")
+process_material = SubResource("ParticleProcessMaterial_kggnj")
+
+[node name="Smokeparticles2" type="GPUParticles2D" parent="world2openingcutscene"]
+position = Vector2(-256, 701)
+emitting = false
+amount = 800
+texture = ExtResource("6_kggnj")
+process_material = SubResource("ParticleProcessMaterial_kggnj")
+
+[node name="Smokeparticles3" type="GPUParticles2D" parent="world2openingcutscene"]
+position = Vector2(-345, 575)
+emitting = false
+amount = 800
+texture = ExtResource("6_kggnj")
+process_material = SubResource("ParticleProcessMaterial_kggnj")
+
+[node name="Smokeparticles4" type="GPUParticles2D" parent="world2openingcutscene"]
+position = Vector2(-265, 618)
+emitting = false
+amount = 800
+texture = ExtResource("6_kggnj")
+process_material = SubResource("ParticleProcessMaterial_kggnj")
+
+[node name="Smokeparticles5" type="GPUParticles2D" parent="world2openingcutscene"]
+position = Vector2(-184, 576)
+emitting = false
+amount = 800
+texture = ExtResource("6_kggnj")
+process_material = SubResource("ParticleProcessMaterial_kggnj")
 
 [connection signal="body_entered" from="world2openingcutscene/player_detection" to="." method="_on_player_detection_body_entered"]
