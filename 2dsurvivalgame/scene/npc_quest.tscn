@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://s7xkmfc53v5i"]
+[gd_scene load_steps=3 format=3 uid="uid://s7xkmfc53v5i"]
 
+[ext_resource type="Script" uid="uid://cdnmfjjoquu8" path="res://script/npc_quest.gd" id="1_dv85n"]
 [ext_resource type="Texture2D" uid="uid://c6i3bn46mltox" path="res://art/inventory_set/inventory-slot.png" id="1_ie5ly"]
 
 [node name="npc_quest" type="Control"]
@@ -7,8 +8,10 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_dv85n")
 
 [node name="quest1_ui" type="NinePatchRect" parent="."]
+visible = false
 offset_left = -28.0
 offset_top = -44.0
 offset_right = 28.0
@@ -117,3 +120,6 @@ offset_bottom = 97.0
 scale = Vector2(0.3, 0.3)
 text = "GOOD JOB!!
 Thank you so much! :)"
+
+[connection signal="pressed" from="quest1_ui/yesButton1" to="." method="_on_yes_button_1_pressed"]
+[connection signal="pressed" from="quest1_ui/noButton1" to="." method="_on_no_button_1_pressed"]

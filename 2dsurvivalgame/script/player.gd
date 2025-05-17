@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+signal stick_collected
+signal apple_collected
+signal slime_collected
+
 var speed = 100
 var player_state
 var bow_equipped = false
@@ -116,3 +120,15 @@ func player():
 
 func collect(item):
 	inv.insert(item)
+	#print(item)
+	if str(item) == "<Resource#-9223372003233233473>": #stick
+		#print("PICKED UP STICK")
+		emit_signal("stick_collected")
+		
+	if str(item) == "<Resource#-9223372004139203147>": #apple
+		#print("PICKED UP APPLE")
+		emit_signal("apple_collected")
+	
+	if str(item) == "<Resource#-9223372002193046070>": #slime
+		#print("PICKED UP SLIME")
+		emit_signal("slime_collected")
