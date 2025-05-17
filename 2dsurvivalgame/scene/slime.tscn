@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://gma2p4oecof6"]
+[gd_scene load_steps=28 format=3 uid="uid://gma2p4oecof6"]
 
 [ext_resource type="Script" uid="uid://70cgh8rhyaid" path="res://script/slime.gd" id="1_08lxr"]
 [ext_resource type="Texture2D" uid="uid://bu3gukjp17rqe" path="res://art/character/survivalgame-enemy-slime.png" id="2_p3a6y"]
+[ext_resource type="Resource" uid="uid://cvceqqmppad4e" path="res://inventory/items/slime.tres" id="2_wkhhu"]
+[ext_resource type="PackedScene" uid="uid://cldwpqx6vp41i" path="res://scene/slime_collectible.tscn" id="3_p3a6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhhu"]
 atlas = ExtResource("2_p3a6y")
@@ -156,8 +158,12 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_ms0w7"]
 radius = 73.7631
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wkhhu"]
+radius = 2081.7
+
 [node name="slime" type="CharacterBody2D"]
 script = ExtResource("1_08lxr")
+itemRes = ExtResource("2_wkhhu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_arter")
@@ -176,9 +182,19 @@ shape = SubResource("CircleShape2D_p1jmo")
 [node name="detection_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(1, 0)
+position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_ms0w7")
+
+[node name="slime_collectible" parent="." instance=ExtResource("3_p3a6y")]
+visible = false
+
+[node name="slime_collect_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slime_collect_area"]
+shape = SubResource("CircleShape2D_wkhhu")
+disabled = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="slime_collect_area" to="." method="_on_slime_collect_area_body_entered"]

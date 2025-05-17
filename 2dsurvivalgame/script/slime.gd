@@ -6,6 +6,9 @@ var dead = false
 var player_in_area = false
 var player
 
+@onready var slime = $slime_collectible
+@export var itemRes: InvItem
+
 func _ready() -> void:
 	dead = false
 	
@@ -52,4 +55,24 @@ func death():
 	$AnimatedSprite2D.play("death")
 	
 	await get_tree().create_timer(1).timeout
+	drop_slime()
+	
+	$AnimatedSprite2D.visible = false
+	$hitbox/CollisionShape2D.disabled = true
+	$detection_area/CollisionShape2D.disabled = true
+
+func drop_slime():
+	slime.visible = true
+	$slime_collect_area/CollisionShape2D.disabled = false
+	slime_collect()
+	
+func slime_collect():
+	await get_tree().create_timer(1.5).timeout
+	slime.visible = false
+	player.collect(itemRes)
 	queue_free()
+
+
+func _on_slime_collect_area_body_entered(body: Node2D) -> void:
+	if (body.has_method("player")):
+		player = body

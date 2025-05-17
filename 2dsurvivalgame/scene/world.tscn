@@ -312,3 +312,6 @@ polygon = PackedVector2Array(23, -101, 25, -280, 240, -280, 240, 212, 7, 213, 7,
 
 [node name="slime" parent="." instance=ExtResource("8_y3jn2")]
 position = Vector2(-41, 132)
+
+[node name="slime2" parent="." instance=ExtResource("8_y3jn2")]
+position = Vector2(45, 37)
