@@ -343,7 +343,7 @@ zoom = Vector2(2.5, 2.5)
 limit_left = -479
 limit_top = -279
 limit_right = 239
-limit_bottom = 279
+limit_bottom = 794
 
 [node name="Inv_UI" parent="." instance=ExtResource("4_s4jxa")]
 offset_left = -42.0
