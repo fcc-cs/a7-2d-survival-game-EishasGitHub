@@ -7,6 +7,7 @@ var bow_cooldown = true
 var mouse_loc_from_player = null
 
 @export var inv: Inv
+@onready var camera = $Camera2D
 
 var arrow = preload("res://scene/arrow.tscn")
 
