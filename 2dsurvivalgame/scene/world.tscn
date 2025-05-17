@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sxwk4ek0axyr"]
+[gd_scene load_steps=15 format=3 uid="uid://sxwk4ek0axyr"]
 
 [ext_resource type="PackedScene" uid="uid://bxtfeujjigul8" path="res://scene/player.tscn" id="1_pjass"]
 [ext_resource type="Texture2D" uid="uid://dndn3e81gmfk8" path="res://art/environment/survivalgame-terrian-defult.png" id="2_emkrx"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b2e30hvwfjka" path="res://scene/apple_tree.tscn" id="6_0tg4p"]
 [ext_resource type="PackedScene" uid="uid://mx1gyhelhbbn" path="res://scene/stick_collectible.tscn" id="6_hcb8y"]
 [ext_resource type="PackedScene" uid="uid://gma2p4oecof6" path="res://scene/slime.tscn" id="8_y3jn2"]
+[ext_resource type="PackedScene" uid="uid://ckk7dhi6l5pl2" path="res://scene/world_2.tscn" id="9_yur6x"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yur6x"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ghph"]
 texture = ExtResource("2_emkrx")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -94,7 +95,7 @@ texture_region_size = Vector2i(40, 40)
 17:3/0 = 0
 18:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ghph"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_na5tu"]
 texture = ExtResource("3_0tg4p")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -140,7 +141,7 @@ texture_region_size = Vector2i(40, 40)
 15:2/0 = 0
 17:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_na5tu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsnws"]
 texture = ExtResource("4_hcb8y")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -210,7 +211,7 @@ texture_region_size = Vector2i(40, 40)
 17:2/0/y_sort_origin = 12
 17:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.43887, 7.91378, 12.9498, 7.73393, 9.53251, 14.7484, 0.719435, 14.7484)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsnws"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f345f"]
 texture = ExtResource("5_y3jn2")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -266,10 +267,10 @@ texture_region_size = Vector2i(40, 40)
 [sub_resource type="TileSet" id="TileSet_f345f"]
 tile_size = Vector2i(40, 40)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_yur6x")
-sources/1 = SubResource("TileSetAtlasSource_7ghph")
-sources/2 = SubResource("TileSetAtlasSource_na5tu")
-sources/3 = SubResource("TileSetAtlasSource_jsnws")
+sources/0 = SubResource("TileSetAtlasSource_7ghph")
+sources/1 = SubResource("TileSetAtlasSource_na5tu")
+sources/2 = SubResource("TileSetAtlasSource_jsnws")
+sources/3 = SubResource("TileSetAtlasSource_f345f")
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
@@ -308,10 +309,12 @@ position = Vector2(12, 88)
 [node name="collisions" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
-polygon = PackedVector2Array(23, -101, 25, -280, 240, -280, 240, 212, 7, 213, 7, 280, -47, 280, -45, 214, -480, 212, -480, 75, -442, 75, -434, 76, -434, 94, -433, 102, -426, 109, -418, 114, -408, 115, -398, 115, -394, 119, -394, 134, -390, 142, -382, 151, -377, 154, -366, 154, -269, 154, -261, 153, -255, 148, -247, 141, -246, 133, -245, 117, -243, 115, -234, 114, -231, 116, -232, 138, -230, 143, -226, 148, -221, 153, -216, 155, -181, 155, -176, 152, -173, 148, -167, 142, -165, 135, -165, -18, -167, -22, -171, -26, -177, -31, -184, -35, -242, -36, -246, -39, -245, -66, -247, -70, -251, -73, -260, -75, -267, -74, -273, -69, -276, -62, -276, -42, -276, -39, -281, -35, -297, -35, -303, -33, -309, -29, -313, -24, -316, -18, -315, 95, -313, 100, -307, 108, -298, 113, -295, 114, -276, 115, -273, 119, -273, 123, -277, 126, -291, 126, -320, 126, -359, 125, -362, 122, -365, 121, -365, 116, -364, 100, -368, 95, -373, 90, -382, 89, -385, 84, -395, 85, -401, 83, -405, 81, -406, 59, -411, 52, -417, 48, -424, 45, -480, 45, -480, -280, -467, -280, -466, -139, -464, -135, -462, -130, -460, -127, -455, -125, -345, -125, -345, -97, -344, -93, -342, -89, -340, -86, -336, -85, 9, -86, 18, -86, 22, -91, 23, -96, 12, -301, -32, -302, -87, -305, -142, -302, -160, -302, -267, -303, -421, -302, -492, -302, -536, -236, -593, -98, -608, 69, -611, 198, -573, 327, -522, 388, -295, 427, -163, 450, 70, 429, 223, 375, 406, 334, 437, 183, 468, 49, 474, -96, 428, -354, 305, -386, 100, -388, 39, -358, 22, -301)
+polygon = PackedVector2Array(25, -103, 28, -280, 239, -280, 240, 213, 6, 213, 7, 337, 27, 337, 30, 345, 45, 346, 46, 354, 47, 490, 54, 496, 70, 497, 72, 504, 86, 505, 92, 514, 107, 515, 111, 509, 116, 506, 127, 505, 133, 498, 145, 497, 152, 487, 162, 485, 166, 496, 166, 755, 160, 762, 152, 753, 145, 742, 130, 739, 118, 729, 102, 722, -227, 722, -233, 728, -245, 730, -252, 742, -264, 741, -276, 769, -284, 769, -289, 724, -302, 723, -312, 734, -328, 734, -336, 723, -346, 723, -352, 729, -353, 745, -354, 760, -366, 760, -366, 542, -352, 543, -349, 537, -331, 535, -328, 519, -316, 519, -308, 534, -293, 535, -287, 546, -274, 547, -268, 535, -254, 535, -244, 524, -233, 522, -225, 535, -211, 536, -207, 546, -191, 546, -186, 557, -176, 556, -167, 548, -153, 545, -147, 536, -133, 535, -126, 526, -125, 512, -124, 489, -119, 482, -112, 488, -104, 498, -92, 497, -88, 509, -75, 507, -68, 498, -51, 497, -47, 491, -45, 212, -480, 212, -480, 74, -437, 74, -432, 78, -433, 94, -432, 103, -425, 111, -415, 114, -403, 115, -396, 115, -395, 129, -395, 143, -389, 150, -381, 155, -359, 157, -259, 156, -249, 147, -245, 139, -245, 129, -245, 115, -232, 116, -233, 129, -233, 138, -229, 147, -215, 152, -194, 152, -175, 150, -169, 145, -163, 136, -164, 129, -164, -19, -173, -31, -188, -38, -207, -38, -244, -36, -247, -45, -246, -62, -251, -71, -263, -74, -273, -73, -275, -66, -274, -51, -274, -38, -287, -35, -300, -35, -312, -27, -315, -13, -317, 10, -313, 96, -310, 106, -294, 115, -277, 116, -270, 124, -280, 127, -298, 129, -328, 127, -352, 128, -366, 121, -368, 97, -377, 89, -389, 86, -405, 85, -407, 64, -408, 55, -418, 47, -430, 44, -480, 44, -480, -281, -467, -279, -464, -139, -463, -133, -459, -126, -452, -125, -347, -123, -346, -95, -342, -89, -331, -84, 16, -85, 22, -89, 25, -96, 20, -324, -284, -335, -498, -330, -587, -192, -562, -82, -552, 317, -416, 554, -448, 701, -416, 784, -138, 794, 105, 797, 220, 787, 231, 637, 219, 476, 231, 377, 305, -188, 281, -343, 39, -317)
 
 [node name="slime" parent="." instance=ExtResource("8_y3jn2")]
 position = Vector2(-41, 132)
 
 [node name="slime2" parent="." instance=ExtResource("8_y3jn2")]
 position = Vector2(45, 37)
+
+[node name="world2" parent="." instance=ExtResource("9_yur6x")]
