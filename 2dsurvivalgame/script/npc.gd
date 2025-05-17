@@ -49,14 +49,14 @@ func _process(delta: float) -> void:
 				MOVE:
 					move(delta)
 	
-	if (Input.is_action_just_pressed("chat")):
+	if (Input.is_action_just_pressed("chat")) and (player_in_chat_zone):
 		#print("chatting with npc")
 		$Dialogue.start()
 		is_roaming = false
 		is_chatting = true
 		$AnimatedSprite2D.play("idle")
 
-	if (Input.is_action_just_pressed("quest")):
+	if (Input.is_action_just_pressed("quest")) and (player_in_chat_zone):
 		#print("Quest has started")
 		$npc_quest.next_quest()
 		is_roaming = false
