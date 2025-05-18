@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 			if (pathfollower.progress_ratio >= 1):
 				cutsceneclosing()
 				
-			if (!smoke_has_happened) and (pathfollower.progress_ratio >= 0.5) and (!smoke_is_happening):
+			if (!smoke_has_happened) and (pathfollower.progress_ratio >= 0.47) and (!smoke_is_happening):
 				smoke_is_happening = true
 				
 				toggle_smoke()
