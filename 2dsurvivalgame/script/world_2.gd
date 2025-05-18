@@ -10,7 +10,7 @@ var is_pathfollowing = false
 var smoke_has_happened = false
 var smoke_is_happening = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (is_openingcutscene):
 		var pathfollower = $world2openingcutscene/Path2D/PathFollow2D
 		

@@ -10,7 +10,7 @@ func fallfromtree():
 	await get_tree().create_timer(1.5).timeout
 	
 	$AnimationPlayer.play("fade")
-	print("+1 apples")
+	#print("+1 apples")
 	
 	await get_tree().create_timer(0.3).timeout
 	

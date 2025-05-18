@@ -11,8 +11,9 @@ var player
 
 func _ready() -> void:
 	dead = false
+	add_to_group("enemy")
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (!dead):
 		$detection_area/CollisionShape2D.disabled = false
 		
@@ -45,7 +46,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		take_damage()
 		
 func take_damage():
-	$health.damage()
+	if (!dead):
+		$health.damage()
 	#health = health - damage
 	#
 	#if (health <= 0) and (!dead):
@@ -61,6 +63,8 @@ func death():
 	$AnimatedSprite2D.visible = false
 	$hitbox/CollisionShape2D.disabled = true
 	$detection_area/CollisionShape2D.disabled = true
+	
+	remove_from_group("enemy")
 
 func drop_slime():
 	slime.visible = true

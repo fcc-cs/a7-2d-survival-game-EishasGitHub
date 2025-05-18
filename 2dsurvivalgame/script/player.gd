@@ -16,7 +16,10 @@ var dead = false
 
 var arrow = preload("res://scene/arrow.tscn")
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+	dead = false
+
+func _physics_process(_delta: float) -> void:
 	
 	if (!dead):
 		mouse_loc_from_player = get_global_mouse_position() - self.position
@@ -127,28 +130,33 @@ func collect(item):
 	if (!dead):
 		inv.insert(item)
 		#print(item)
-		if str(item) == "<Resource#-9223372003233233473>": #stick
+		if (item.name == "stick"): #stick
 			#print("PICKED UP STICK")
 			emit_signal("stick_collected")
 			
-		if str(item) == "<Resource#-9223372004139203147>": #apple
+		if (item.name == "apple"): #apple
 			#print("PICKED UP APPLE")
 			emit_signal("apple_collected")
 		
-		if str(item) == "<Resource#-9223372002193046070>": #slime
+		if (item.name == "slime"): #slime
 			#print("PICKED UP SLIME")
 			emit_signal("slime_collected")
 
 func take_damage():
-	$health.damage()
+	if (!dead):
+		$health.damage()
 
 
 func _on_health_no_health() -> void:
 	if (!dead):
 		dead = true
-		get_tree().reload_current_scene()
+		await get_tree().create_timer(0.1).timeout
+		game_over()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if (body.has_method("enemy")):
+	if (body.is_in_group("enemy")):
 		take_damage()
+		
+func game_over():
+	get_tree().reload_current_scene()
