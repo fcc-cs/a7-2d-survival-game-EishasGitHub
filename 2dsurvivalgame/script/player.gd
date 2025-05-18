@@ -132,3 +132,15 @@ func collect(item):
 	if str(item) == "<Resource#-9223372002193046070>": #slime
 		#print("PICKED UP SLIME")
 		emit_signal("slime_collected")
+
+func take_damage():
+	$health.damage()
+
+
+func _on_health_no_health() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if (body.has_method("enemy")):
+		take_damage()

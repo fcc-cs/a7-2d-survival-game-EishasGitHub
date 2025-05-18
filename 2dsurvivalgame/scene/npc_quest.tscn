@@ -12,6 +12,7 @@ script = ExtResource("1_dv85n")
 
 [node name="quest1_ui" type="NinePatchRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = -28.0
 offset_top = -44.0
 offset_right = 28.0
@@ -62,6 +63,7 @@ text = "no"
 
 [node name="no_quest" type="NinePatchRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = -28.0
 offset_top = -44.0
 offset_right = 28.0
@@ -92,6 +94,7 @@ text = "No quest available. Come back later!"
 
 [node name="finished_quest" type="NinePatchRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = -28.0
 offset_top = -44.0
 offset_right = 28.0

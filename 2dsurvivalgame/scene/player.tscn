@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://bxtfeujjigul8"]
+[gd_scene load_steps=41 format=3 uid="uid://bxtfeujjigul8"]
 
 [ext_resource type="Script" uid="uid://chjdp2lasdfbw" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Resource" uid="uid://65swl42h367b" path="res://inventory/playerinv.tres" id="2_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://weicnh7iwmto" path="res://art/character/survivalgame-player-green.png" id="2_fvtld"]
 [ext_resource type="PackedScene" uid="uid://x0dsx5ygihog" path="res://inventory/inv_ui.tscn" id="4_s4jxa"]
+[ext_resource type="PackedScene" uid="uid://c710mnyt6geku" path="res://scene/health.tscn" id="5_s4jxa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct4mp"]
 atlas = ExtResource("2_fvtld")
@@ -325,6 +326,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0a317"]
 radius = 4.12311
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4jxa"]
+radius = 6.0
+
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_hjaqi")
@@ -352,3 +356,18 @@ offset_right = 42.0
 offset_bottom = -16.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="health" parent="." instance=ExtResource("5_s4jxa")]
+offset_left = -6.0
+offset_top = 9.0
+offset_right = 54.0
+offset_bottom = 34.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_s4jxa")
+
+[connection signal="no_health" from="health" to="." method="_on_health_no_health"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
