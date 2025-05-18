@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://gma2p4oecof6"]
+[gd_scene load_steps=29 format=3 uid="uid://gma2p4oecof6"]
 
 [ext_resource type="Script" uid="uid://70cgh8rhyaid" path="res://script/slime.gd" id="1_08lxr"]
 [ext_resource type="Texture2D" uid="uid://bu3gukjp17rqe" path="res://art/character/survivalgame-enemy-slime.png" id="2_p3a6y"]
 [ext_resource type="Resource" uid="uid://cvceqqmppad4e" path="res://inventory/items/slime.tres" id="2_wkhhu"]
 [ext_resource type="PackedScene" uid="uid://cldwpqx6vp41i" path="res://scene/slime_collectible.tscn" id="3_p3a6y"]
+[ext_resource type="PackedScene" uid="uid://c710mnyt6geku" path="res://scene/health.tscn" id="5_q8ldp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkhhu"]
 atlas = ExtResource("2_p3a6y")
@@ -194,7 +195,14 @@ visible = false
 shape = SubResource("CircleShape2D_wkhhu")
 disabled = true
 
+[node name="health" parent="." instance=ExtResource("5_q8ldp")]
+offset_left = -5.0
+offset_top = 6.0
+offset_right = 55.0
+offset_bottom = 31.0
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="slime_collect_area" to="." method="_on_slime_collect_area_body_entered"]
+[connection signal="no_health" from="health" to="." method="_on_health_no_health"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 50
-var health = 100
+#var health = 100
 var dead = false
 var player_in_area = false
 var player
@@ -38,17 +38,18 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	var damage
+	#var damage
 	
 	if (area.has_method("arrow_deal_damage")):
-		damage = 50
-		take_damage(damage)
+		#damage = 50
+		take_damage()
 		
-func take_damage(damage):
-	health = health - damage
-	
-	if (health <= 0) and (!dead):
-		death()
+func take_damage():
+	$health.damage()
+	#health = health - damage
+	#
+	#if (health <= 0) and (!dead):
+		#death()
 		
 func death():
 	dead = true
@@ -79,3 +80,10 @@ func _on_slime_collect_area_body_entered(body: Node2D) -> void:
 
 func enemy():
 	pass
+
+
+
+func _on_health_no_health() -> void:
+	if (!dead):
+		$health.visible = false
+		death()
